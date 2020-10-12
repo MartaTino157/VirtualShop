@@ -5,24 +5,26 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author pupil
  */
-public class Customer {
+public class Customer implements Serializable{
     private String name;
     private String lastname;
-    private String email;
-    private int phone;
+    private String phone;
+    private double money;
 
     public Customer() {
     }
 
-    public Customer(String name, String lastname, String email, int phone) {
+    public Customer(String name, String lastname, String phone, double money) {
         this.name = name;
         this.lastname = lastname;
-        this.email = email;
         this.phone = phone;
+        this.money = money;
     }
 
     public String getName() {
@@ -41,20 +43,20 @@ public class Customer {
         this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 
     @Override
@@ -62,10 +64,12 @@ public class Customer {
         return "Customer{" 
                 + "name=" + name 
                 + ", lastname=" + lastname 
-                + ", email=" + email 
                 + ", phone=" + phone 
+                + ", money=" + money 
                 + '}';
     }
+
+    
 
     
     

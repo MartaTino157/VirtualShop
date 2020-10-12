@@ -5,22 +5,24 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author pupil
  */
-public class Product {
+public class Product implements Serializable{
     private String name;
-    private String producer;
-    private int price;
+    private String price;
+    private int quantity;
 
     public Product() {
     }
 
-    public Product(String name, String producer, int price) {
+    public Product(String name, String price, Integer quantity) {
         this.name = name;
-        this.producer = producer;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -31,30 +33,34 @@ public class Product {
         this.name = name;
     }
 
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "Product{" 
                 + "name=" + name 
-                + ", producer=" + producer 
                 + ", price=" + price 
+                + ", quantity=" + quantity 
                 + '}';
     }
+    
+    
+
+
     
     
 }
