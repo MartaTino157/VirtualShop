@@ -6,9 +6,12 @@
 package virtualshop;
 
 
+import entity.Archive;
 import entity.Customer;
 import entity.Product;
 import java.util.Scanner;
+import tools.CustomerManager;
+import tools.CustomerStorageManager;
 import tools.ProductManager;
 import tools.ProductStorageManager;
 
@@ -20,12 +23,18 @@ public class App {
     private Scanner scan = new Scanner(System.in);
     private Customer[] customers = new Customer[10];
     private Product[] products = new Product[10];
+    private Archive[] archives = new Archive[10];
 
     public App() {
         ProductStorageManager psm = new ProductStorageManager();
         Product[] loadedProducts = psm.loadFromFile();
         if(loadedProducts != null){
             products = loadedProducts;
+        }
+        CustomerStorageManager csm = new CustomerStorageManager();
+        Customer[] loadedCustomers = csm.loadFromFile();
+        if(loadedCustomers != null){
+            customers = loadedCustomers;
         }
     }
     
@@ -76,19 +85,25 @@ public class App {
                     }
                     break;
                 case "3":
-                    System.out.println("----- ДОБАЛЕНИЕ ПОКУПАТЕЛЯ -----");
-                    Customer customer = new Customer("Igor","Sidorov","igorsidorov@ivkhk.ee", 48569732);
-                    customers[0] = customer;
-                    Customer customer1 = new Customer("Mari","Doronova","maridoronova@ivkhk.ee", 67283918);
-                    customers[1] = customer1;
+                    System.out.println("----- ДОБАВИТЬ НОВОГО ПОКУПАТЕЛЯ -----");
+                    CustomerManager customerManager = new CustomerManager();
+                    Customer customer = customerManager.addCustomer();
+                    for (int i = 0; i < customers.length; i++) {
+                        if(customers[i] == null){
+                            customers[i] = customer;
+                            break;
+                        }
+                    }
+                    CustomerStorageManager customerStorageManager = new CustomerStorageManager();
+                    customerStorageManager.saveCustomersToFile(customers);
                     break;
                 case "4":
                     System.out.println("----- СПИСОК ПОКУПАТЕЛЕЙ -----");
-                    int i = 0;
+                    n = 0;
                     for (Customer c : customers) {
                         if(c != null){
-                            System.out.println(i+1+". "+c.toString());
-                            i++;
+                            System.out.println(n+1+". "+c.toString());
+                            n++;
                         }
                     }
                     break;

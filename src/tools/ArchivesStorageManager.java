@@ -5,7 +5,7 @@
  */
 package tools;
 
-import entity.Customer;
+import entity.Archive;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,17 +19,17 @@ import java.util.logging.Logger;
  *
  * @author pupil
  */
-public class CustomerStorageManager {
+public class ArchivesStorageManager {
     
-    public void saveCustomersToFile(Customer[] customers) {
-        String fileName = "customers";
+    public void saveArchivesToFile(Archive[] archives){
+        String fileName = "archives";
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         
         try {
             fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(customers);
+            oos.writeObject(archives);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Нет такого файла!");
@@ -37,15 +37,15 @@ public class CustomerStorageManager {
             System.out.println("Ошибка ввода/вывода");
         }
     }
-    public Customer[] loadFromFile(){
-        Customer[] customers = null;
-        String fileName = "customers";
+    public Archive[] loadArchivesFromFile(){
+        Archive[] archives = null;
+        String fileName = "archives";
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream(fileName);
             ois = new ObjectInputStream(fis);
-            return (Customer[]) ois.readObject();
+            return (Archive[]) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("Нет такого файла!");
         } catch (IOException ex) {
@@ -53,6 +53,7 @@ public class CustomerStorageManager {
         } catch (ClassNotFoundException ex) {
             System.out.println("Нет такого класса");
         }
-        return customers;
+        
+        return archives;
     }
 }

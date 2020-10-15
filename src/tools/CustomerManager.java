@@ -13,9 +13,9 @@ import java.util.Scanner;
  * @author pupil
  */
 public class CustomerManager {
+    
     public Customer addCustomer(){
         Customer сustomer = new Customer();
-        System.out.println(" --- Зарегистрировать покупателя --- ");
         System.out.printf("Введите имя: ");
         Scanner scanner = new Scanner(System.in);
         сustomer.setName(scanner.nextLine());
@@ -25,6 +25,7 @@ public class CustomerManager {
         сustomer.setPhone(scanner.nextLine());
         System.out.printf("Баланс: ");
         сustomer.setMoney(scanner.nextDouble());
+        
         return сustomer; 
     }
 }
